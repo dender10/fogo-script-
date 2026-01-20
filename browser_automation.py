@@ -265,7 +265,13 @@ class BrowserAutomation:
                         self.page = p
                         break
 
-            print(f"\nBack on: {self.page.url}")
+            # Step 7: Refresh page to complete connection
+            print("\nStep 7: Refreshing page...")
+            await asyncio.sleep(1)
+            await self.page.reload(wait_until="domcontentloaded")
+            await asyncio.sleep(2)
+
+            print(f"\nConnected on: {self.page.url}")
             print("\n=== Wallet Connected! ===\n")
             return True
 
